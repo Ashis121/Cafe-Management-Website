@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bs/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/index_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sign_style.css' %}">
+    <title>Silicon cafe</title>
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'css/cart-style.css' %}">
+    {% endblock css %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">SIT CAFE</a>
+
+          <div class="input-group rounded" style="width:300px ;">
+            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+            <span class="input-group-text border-0 " id="search-addon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </span>
+          </div>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'about_us' %}">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'contact_us' %}">Contact Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'menu' %}">Menu</a>
+              </li>
+              {% if user.is_authenticated %}
+
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'cart' %}">Cart</a>
+              </li>
+
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Welcome,{{user.username}}
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{%url 'orders'%}">Orders</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'signout' %}">Log Out</a></li>
+                </ul>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'signup' %}">Sign Up</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'signin' %}">Sign In</a>
+            </li>
+            {% endif %}  
+           </ul>
+          </div>
+        </div>
+      </nav>
+      <br>
+ 
+    {% block  content %} 
+  
+    {% endblock content %}
+    <footer class="bg-dark p-5 text-center text-light">
+        &copy;2022
+    </footer>
+    {% block extrajs %}
+    
+    {% endblock extrajs %}
+    <script src="{%static 'bs/bootstrap.bundle.js'%}"></script>
+</body>
+</html>

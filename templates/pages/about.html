@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index_style.css'%}">
+{% endblock css %}
+
+{% block content %}
+<center><h1> About Us</h1></center>
+    <div class="about">
+        <center><img src="{%static 'images/cafe6.jpg'%}" alt="" width="96%" height="800px"></center>
+        <b><p class="text-md-left">Since our modest beginnings in 2005,Silicon cafeteria has been enlivened with the energy to cook and serve the silicon students,teaching and non teaching staffs.We realize numerous individuals love Indian sustenance, yet a large number of them loathe or are unconscious of the regularly unfortunate fixings that make run-of-the-mill Indian nourishment taste so great.We are here for providing great taste and health</p></b>
+    </div>
+    
+{% endblock content%}
+<br>
