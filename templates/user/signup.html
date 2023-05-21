@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/sign_style.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-md-4 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Sign Up</h3>
+                </div>
+                <div class="card-body">
+                    {% if messages %}
+                    {% for message  in messages  %}
+                    <p class="{{message.tag}}">{{message}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    <form action="{% url 'signup' %}" method="post">
+                        {% csrf_token %}
+                        <div class="mb-1">
+                            <label for="first_name">
+                                <label for="first_name">First Name <span class="text-danger">*</span></label>
+                                <input type="text" name="first_name" id="first_name" class="form-control">
+                                <label for="first_name_error" id="first_name_error" class="text-danger"></label>
+                            </label>
+                        </div>
+                        <div class="mb-1">
+                            <label for="last_name">Last Name</label>
+                            <input class="form-control" type="text" name="last_name" id="last_name">
+                        </div>
+                        <div class="mb-1">
+                            <label for="username">SIC Number</label>
+                            <input class="form-control" type="text" name="username" id="username">
+                        </div>
+                        <div class="mb-1">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="email" name="email" id="email">
+                        </div>
+                        <div class="mb-1">
+                            <label for="password">Password</label>
+                            <input class="form-control" type="password" name="password" id="password">
+                        </div>
+                        <div class="mb-1">
+                            <label for="password2">Confirm Password</label>
+                            <input class="form-control" type="password" name="password2" id="password2">
+                        </div>
+                        <input type="submit" value="Sign Up" class="btn btn-primary w-100 my-2">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+{% block extrajs %}
+    <script src="{% static 'js/form_validator.js' %}"></script>
+{% endblock extrajs %}
